@@ -6,7 +6,7 @@ app.get('/', (req, res) => res.send('Hello World!'))
 app.listen(3000, () => console.log('Example app listening on port 3000!'))
 
 app.get('/get', function(req, res) {
-    res.send('Eai put*** do ca*****');
+    res.send('Olá');
 });
 
 app.post('/post', function(req, res) {
