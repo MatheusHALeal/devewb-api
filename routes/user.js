@@ -12,7 +12,7 @@ router.use('/:id', function(req, res, next) {
 
 router.get('/', controller.get);
 router.get('/:id', controller.get);
-router.post('/registration', controller.signup);
+router.put('/registration', controller.signup);
 router.post('/login', controller.signin);
 
 module.exports = router;
