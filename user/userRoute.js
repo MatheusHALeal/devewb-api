@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const controller = require('../controllers/eventController');
+const controller = require('./userController');
 
 router.use('/:id', function(req, res, next) {
   console.log('Request URL:', req.originalUrl);
@@ -10,11 +10,9 @@ router.use('/:id', function(req, res, next) {
   next();
 });
 
-
 router.get('/', controller.get);
 router.get('/:id', controller.get);
-router.put('/', controller.put);
-router.post('/:id', controller.post);
-router.delete('/:id', controller.delete);
+router.put('/registration', controller.signup);
+router.post('/login', controller.signin);
 
 module.exports = router;
