@@ -4,13 +4,15 @@ const express = require('express'),
     PORT = process.env.PORT || 3000,
     morgan = require('morgan'),
     bodyParser = require('body-parser'),
-    cache = require('memory-cache');
-    user = require('./user/userRoute');
-    events = require('./event/eventRoute');
-    restaurant = require('./restaurant/restaurantRoute');
-    index = require('./index');
+    cache = require('memory-cache'),
+    user = require('./user/userRoute'),
+    events = require('./event/eventRoute'),
+    restaurant = require('./restaurant/restaurantRoute'),
+    index = require('./index'),
+    mongoose = require('mongoose'),
+    bcrypt = require('bcryptjs');
 
-
+mongoose.connect('mongodb://localhost/top', { useNewUrlParser: true });
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(function (req, res, next) {
