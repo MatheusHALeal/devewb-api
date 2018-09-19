@@ -33,8 +33,8 @@ exports.create = (req, res) => {
     } else {
       res.status(OK_STATUS).send('Event created.');
     }
-	}
-});
+	});
+};
 
 exports.update = (req, res) => {
 	Event.updateOne({ _id: req.params.event_id }, { $set: req.body })

@@ -30,6 +30,7 @@ var UserSchema = new Schema({
 		type: String,
 		required: true
 	}
+	events: [{ type: Schema.Types.ObjectId, ref: 'Event' }]
 });
 
 UserSchema.methods.generateHash = function(password) {
