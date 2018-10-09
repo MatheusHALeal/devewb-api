@@ -1,7 +1,7 @@
 const express = require('express'),
-    app = express(),
     router = express.Router(),
     PORT = process.env.PORT || 3000,
+    cors = require('cors'),
     morgan = require('morgan'),
     bodyParser = require('body-parser'),
     cache = require('memory-cache'),
@@ -10,8 +10,11 @@ const express = require('express'),
     restaurant = require('./restaurant/restaurantRoute'),
     index = require('./index'),
     mongoose = require('mongoose'),
-    bcrypt = require('bcryptjs');
-
+    bcrypt = require('bcryptjs'),
+    passport = require('passport'),
+    session = require('express-session'),
+    app = express();
+    
 mongoose.connect('mongodb://localhost/top', { useNewUrlParser: true });
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -19,7 +22,10 @@ app.use(function (req, res, next) {
     res.header('Content-Type', 'application/json');
     next();  // sem o next, a chamada para aqui
 });
-
+app.use(cors());
+app.use(session({ secret: 'passport-tutorial', cookie: { maxAge: 60000 }, resave: false, saveUninitialized: false }));
+app.use(passport.initialize())
+app.use(passport.session())
 
 //ROUTES
 
