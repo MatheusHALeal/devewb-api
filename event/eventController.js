@@ -14,6 +14,17 @@ exports.index = (req, res) => {
 	  });
 };
 
+// exports.eventByUser = (req, res) => {
+//   Event.find({'email': userEmail})
+// 	  .catch((err) => {
+// 	    res.status(BAD_REQUEST_STATUS).send(err);
+// 	  })
+// 	  .then((result) => {
+// 	    res.status(OK_STATUS).json(result);
+// 	  });
+// };
+
+
 exports.show = (req, res) => {
 	Event.findById(req.params.event_id)
 		.then((entertainment) => {
