@@ -62,3 +62,7 @@ exports.delete = (req, res) => {
 			res.status(BAD_REQUEST_STATUS).send(error);
 		});
 };
+
+exports.getUserByEmail = (userEmail) => {
+    return User.findOne({'email': userEmail});
+};
