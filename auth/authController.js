@@ -31,3 +31,33 @@ exports.login = (req, res, next) => {
             return res.json(error);
         });
 }
+
+exports.authenticate = (req, res, next) => {
+    let token = undefined;
+    if (req.headers['authorization']) {
+        token = req.headers['authorization'].split(" ")[1];
+    } else {
+        token = req.body.token;
+    }
+    if(token) {
+        try {
+            const data = (decodeToken(token));
+            if(data) {
+                req._id = data._id;
+                req.email = data.email;
+                next();
+            } else {
+                return res.json({ 'message':'Failed to decode. Wrong token.' });
+            }
+        } catch (error) {
+            console.log(error);
+            return res.json({ 'message':'Something went wrong, try again.', 'error': error.message });
+        }
+    } else {
+        return res.json({ 'message':'Failed to authenticate. Unreachable token.' });
+    }
+}
+
+const decodeToken = (token) => {
+    return jwt.verify(token, config.jwtSecret);
+}

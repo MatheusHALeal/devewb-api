@@ -22,11 +22,10 @@ app.use(function (req, res, next) {
     next();  // sem o next, a chamada para aqui
 });
 app.use(cors());
-
+app.use(morgan('tiny'));
 
 //ROUTES
 
-app.use(morgan('tiny'));
 app.use('/', index);
 app.use('/user', user);
 app.use('/event', events);
