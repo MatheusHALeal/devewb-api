@@ -1,8 +1,9 @@
 const Event = require('./event');
+const User = require('../user/user')
 const OK_STATUS = 200;
 const BAD_REQUEST_STATUS = 400;
 const FORBIDDEN_STATUS = 403;
-
+const NOT_FOUND = 404;
 
 exports.index = (req, res) => {
   Event.find({})
@@ -14,16 +15,19 @@ exports.index = (req, res) => {
 	  });
 };
 
-// exports.eventByUser = (req, res) => {
-//   Event.find({'email': userEmail})
-// 	  .catch((err) => {
-// 	    res.status(BAD_REQUEST_STATUS).send(err);
-// 	  })
-// 	  .then((result) => {
-// 	    res.status(OK_STATUS).json(result);
-// 	  });
-// };
-
+exports.eventByUser = (req, res) => {
+  Event.find({_author: req.params.user_id})
+    .then((result) => {
+      if (result.length > 0) {
+        res.status(OK_STATUS).json(result);
+      } else {
+        res.status(RequestStatus.NOT_FOUND).json({result, msg: 'No results found.' });
+      }
+    })
+    .catch((error) => {
+      res.status(RequestStatus.BAD_REQUEST_STATUS).json(error);
+    });
+}
 
 exports.show = (req, res) => {
 	Event.findById(req.params.event_id)

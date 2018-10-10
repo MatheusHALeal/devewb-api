@@ -14,7 +14,8 @@ const express = require('express'),
     bcrypt = require('bcryptjs'),
     app = express();
 
-mongoose.connect('mongodb://localhost/top', { useNewUrlParser: true });
+
+mongoose.connect('mongodb://localhost/db', { useNewUrlParser: true });
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(function (req, res, next) {

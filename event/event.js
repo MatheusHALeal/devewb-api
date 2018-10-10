@@ -14,7 +14,8 @@ var EventSchema = new Schema({
     type: Date,
     required: true,
     default: Date.now
-  }
+  },
+	author: [{ type: Schema.Types.ObjectId, ref: 'User' }]
 
 });
 
