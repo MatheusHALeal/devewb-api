@@ -29,6 +29,18 @@ exports.eventByUser = (req, res) => {
     });
 }
 
+exports.eventByCity = (req, res) => {
+  Event.find({ city: req.params})
+    .then((result) => {
+      if (result.length > 0) {
+        res.status(OK_STATUS).json(result);
+      } else {
+        res.status(RequestStatus.NOT_FOUND).json({result, msg: 'No results found.' });
+      }
+    })
+
+}
+
 exports.show = (req, res) => {
 	Event.findById(req.params.event_id)
 		.then((entertainment) => {

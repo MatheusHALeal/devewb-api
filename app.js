@@ -1,6 +1,6 @@
 const express = require('express'),
     router = express.Router(),
-    PORT = process.env.PORT || 3000,
+    PORT = process.env.PORT || 8000,
     cors = require('cors'),
     morgan = require('morgan'),
     bodyParser = require('body-parser'),
