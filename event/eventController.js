@@ -74,7 +74,7 @@ exports.delete = (req, res) => {
 };
 
 this.findEventsByQuery = query => {
-  let events = Event.find({query})
+  let events = Event.find(query)
     .exec();
 
   return events;

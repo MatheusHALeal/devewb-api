@@ -1,12 +1,13 @@
 const express = require('express'),
     router = express.Router(),
-    PORT = process.env.PORT || 3000,
+    PORT = process.env.PORT || 8000,
     cors = require('cors'),
     morgan = require('morgan'),
     bodyParser = require('body-parser'),
     cache = require('memory-cache'),
     user = require('./user/userRoute'),
     events = require('./event/eventRoute'),
+    query = require('./event/query')
     restaurant = require('./restaurant/restaurantRoute'),
     auth = require('./auth/authRoute'),
     index = require('./index'),
@@ -30,6 +31,7 @@ app.use(morgan('tiny'));
 app.use('/', index);
 app.use('/user', user);
 app.use('/event', events);
+app.use('/search', query);
 app.use('/restaurant', restaurant);
 app.use('/auth', auth)
 app.use('/static',express.static(__dirname+'/static'));

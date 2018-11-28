@@ -20,6 +20,11 @@ var EventSchema = new Schema({
 		type: String,
 		require: true
 	},
+	image: {
+		type: String,
+		require: true
+
+	}
 //	author: [{ type: Schema.Types.ObjectId, ref: 'User' }]
 
 });
