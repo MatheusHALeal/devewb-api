@@ -20,11 +20,7 @@ var EventSchema = new Schema({
 		type: String,
 		require: true
 	},
-	geolocation : {
-		type : Point,
-		coordinates: [Number]
-	}
-	author: [{ type: Schema.Types.ObjectId, ref: 'User' }]
+//	author: [{ type: Schema.Types.ObjectId, ref: 'User' }]
 
 });
 

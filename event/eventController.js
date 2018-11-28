@@ -29,17 +29,7 @@ exports.eventByUser = (req, res) => {
     });
 }
 
-exports.eventByCity = (req, res) => {
-  Event.find({ city: req.params})
-    .then((result) => {
-      if (result.length > 0) {
-        res.status(OK_STATUS).json(result);
-      } else {
-        res.status(RequestStatus.NOT_FOUND).json({result, msg: 'No results found.' });
-      }
-    })
 
-}
 
 exports.show = (req, res) => {
 	Event.findById(req.params.event_id)
@@ -81,4 +71,27 @@ exports.delete = (req, res) => {
 		.catch((error) => {
 			res.status(BAD_REQUEST_STATUS).send(error);
 		});
+};
+
+this.findEventsByQuery = query => {
+  let events = Event.find({query})
+    .exec();
+
+  return events;
+};
+
+exports.searchEvents = (req, res) => {
+    this.findEventsByQuery(req.query)
+    .then(result => {
+      if (result.length > 0) {
+        res.status(OK_STATUS).json({ events: result });
+      } else {
+        res
+          .status(NOT_FOUND)
+          .json({ events: result, msg: "No results found." });
+      }
+    })
+    .catch(error => {
+      res.status(BAD_REQUEST_STATUS).send(error);
+    });
 };
