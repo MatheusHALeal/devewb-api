@@ -8,6 +8,12 @@ npm install
 Estando tudo ok, rode o back-end com:
 
 ```
+mongod
+```
+
+E em seguida:
+
+```
 node app.js
 ```
 
